@@ -19,7 +19,6 @@
             padding-bottom: 50px;
         }
 
-        /* Encabezado Negro Estilo Adidas */
         header {
             background: var(--adidas-black);
             color: white;
@@ -28,7 +27,7 @@
         }
 
         .logo-container img {
-            width: 180px; /* Tamaño del logo según tu referencia */
+            width: 180px;
             height: auto;
             margin-bottom: 15px;
         }
@@ -47,7 +46,6 @@
             margin: auto;
         }
 
-        /* Cuadro de Información del Cliente */
         #client-info-display {
             background: var(--adidas-grey);
             padding: 20px;
@@ -100,7 +98,6 @@
             text-transform: uppercase;
         }
 
-        /* Lista de Productos */
         .product-card {
             border-bottom: 1px solid #eee;
             padding: 20px 0;
@@ -116,13 +113,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
-            color: #999;
-            font-weight: bold;
+            overflow: hidden;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: auto;
         }
 
         .product-info { flex-grow: 1; }
-        .product-info strong { display: block; font-size: 15px; text-transform: uppercase; margin-bottom: 5px; }
+        .product-info strong { display: block; font-size: 14px; text-transform: uppercase; margin-bottom: 5px; }
         
         .qty-input {
             width: 65px !important;
@@ -185,19 +185,21 @@
         <h3 style="text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">PRODUCTOS</h3>
         
         <div class="product-card">
-            <div class="product-img">FOTO 1</div>
+            <div class="product-img">
+                <img src="tenis-adistar-control5.JPG" alt="Adistar Control 5">
+            </div>
             <div class="product-info">
-                <strong>FORUM LOW WHITE</strong>
-                <span>$380,000</span>
+                <strong>TENIS ADISTAR CONTROL 5</strong>
+                <span>$599,950</span>
             </div>
             <input type="number" class="qty-input" id="qty-1" value="0" min="0">
         </div>
 
         <div class="product-card">
-            <div class="product-img">FOTO 2</div>
+            <div class="product-img">FOTO</div>
             <div class="product-info">
-                <strong>OZWEEGO BLACK</strong>
-                <span>$420,000</span>
+                <strong>FORUM LOW WHITE</strong>
+                <span>$380,000</span>
             </div>
             <input type="number" class="qty-input" id="qty-2" value="0" min="0">
         </div>
@@ -214,8 +216,8 @@
 
 <script>
     const products = [
-        { id: 1, name: "FORUM LOW WHITE", price: 380000 },
-        { id: 2, name: "OZWEEGO BLACK", price: 420000 }
+        { id: 1, name: "TENIS ADISTAR CONTROL 5", price: 599950 },
+        { id: 2, name: "FORUM LOW WHITE", price: 380000 }
     ];
 
     window.onload = function() {
@@ -246,7 +248,7 @@
         if(data.nombre && data.direccion && data.telefono) {
             localStorage.setItem('adidas_client', JSON.stringify(data));
             showClientInfo(data);
-        } else { alert("Por favor completa todos los campos."); }
+        } else { alert("Por favor completa los campos."); }
     }
 
     function showClientInfo(data) {
@@ -263,8 +265,6 @@
 
     function sendWhatsApp() {
         const client = JSON.parse(localStorage.getItem('adidas_client'));
-        if(!client) return alert("Ingresa tus datos de envío.");
-
         let nroPedido = localStorage.getItem('consecutivo_pedido').padStart(3, '0');
 
         let orderText = `*ORDEN DE PEDIDO N° ${nroPedido}*%0A`;
@@ -290,13 +290,12 @@
             }
         });
 
-        if(!hasItems) return alert("No has seleccionado ningún producto.");
+        if(!hasItems) return alert("Selecciona productos.");
 
         orderText += `------------------------------%0A`;
         orderText += `*TOTAL A PAGAR: $${total.toLocaleString()}*%0A%0A`;
         orderText += `*Generado por: Vibras Positivas*`;
 
-        // Guardar incremento
         localStorage.setItem('consecutivo_pedido', (parseInt(nroPedido) + 1).toString());
         updateBadge();
 

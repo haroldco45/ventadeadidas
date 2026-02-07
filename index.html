@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibras Positivas - Harold & Marleny</title>
+    <title>Vibras Positivas - Catálogo</title>
     <style>
         :root {
             --adidas-black: #000000;
@@ -16,7 +16,7 @@
             margin: 0;
             background-color: var(--adidas-white);
             color: var(--adidas-black);
-            padding-bottom: 50px;
+            padding-bottom: 100px; /* Espacio para el total flotante */
         }
 
         header {
@@ -51,19 +51,9 @@
             padding: 20px;
             border-left: 6px solid var(--adidas-black);
             margin-bottom: 30px;
-            position: relative;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .hidden { display: none; }
-
-        label {
-            font-size: 11px;
-            font-weight: bold;
-            text-transform: uppercase;
-            display: block;
-            margin-top: 10px;
-        }
 
         input {
             width: 100%;
@@ -84,18 +74,6 @@
             cursor: pointer;
             text-transform: uppercase;
             letter-spacing: 2px;
-            font-size: 14px;
-        }
-
-        .btn-edit {
-            background: #fff;
-            border: 1px solid #000;
-            padding: 8px 12px;
-            font-size: 11px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 15px;
-            text-transform: uppercase;
         }
 
         .product-card {
@@ -114,39 +92,46 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            border: 1px solid #ddd;
         }
 
         .product-img img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
         }
 
         .product-info { flex-grow: 1; }
-        .product-info strong { display: block; font-size: 14px; text-transform: uppercase; margin-bottom: 5px; }
+        .product-info strong { display: block; font-size: 14px; text-transform: uppercase; }
         
         .qty-input {
             width: 65px !important;
             margin: 0 !important;
             text-align: center;
             font-weight: bold;
-            border: 1px solid #ccc;
         }
 
-        .order-badge {
-            background: #000;
-            color: #fff;
-            padding: 4px 10px;
-            font-size: 12px;
-            float: right;
+        /* Barra de Total Flotante */
+        .total-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: var(--adidas-black);
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
             font-weight: bold;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
         }
 
         footer {
-            margin-top: 40px;
-            font-size: 12px;
+            margin-top: 20px;
+            font-size: 11px;
             text-align: center;
             color: #444;
-            line-height: 1.6;
             padding: 20px;
         }
     </style>
@@ -161,47 +146,43 @@
 </header>
 
 <div class="container">
-    
     <div id="client-form" class="hidden">
-        <h3 style="text-transform: uppercase; border-bottom: 3px solid #000; padding-bottom: 10px;">Datos de Envío</h3>
-        <label>Nombre Completo</label>
-        <input type="text" id="nombre" placeholder="Ej: JUAN PEREZ">
-        <label>Dirección de Entrega</label>
-        <input type="text" id="direccion" placeholder="Ej: CARRERA 21 # 10-50 BARRIO EL CARMEN">
-        <label>Celular</label>
-        <input type="tel" id="telefono" placeholder="Ej: 3110000000">
-        <button class="btn-adidas" onclick="saveClientData()">INGRESAR AL CATÁLOGO</button>
+        <h3 style="text-transform: uppercase; border-bottom: 3px solid #000;">Datos de Envío</h3>
+        <input type="text" id="nombre" placeholder="NOMBRE COMPLETO">
+        <input type="text" id="direccion" placeholder="DIRECCIÓN Y BARRIO">
+        <input type="tel" id="telefono" placeholder="CELULAR">
+        <button class="btn-adidas" onclick="saveClientData()">ENTRAR AL CATÁLOGO</button>
     </div>
 
     <div id="client-info-display" class="hidden">
-        <span class="order-badge" id="nro-pedido-badge">N° 001</span>
-        <strong style="font-size: 16px;">ENVIAR A:</strong>
-        <div id="display-name" style="text-transform: uppercase; margin-top: 8px; font-weight: 900; font-size: 18px;"></div>
-        <div id="display-dir" style="font-size: 14px; margin-top: 5px; color: #333;"></div>
-        <button class="btn-edit" onclick="editClientData()">✎ EDITAR DATOS</button>
+        <div id="display-name" style="font-weight: 900; font-size: 18px;"></div>
+        <div id="display-dir" style="font-size: 14px; color: #333;"></div>
+        <button style="margin-top:10px; cursor:pointer;" onclick="editClientData()">✎ Editar Datos</button>
     </div>
 
     <div id="catalog">
-        <h3 style="text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">PRODUCTOS</h3>
+        <h3 style="text-transform: uppercase; letter-spacing: 2px;">CATÁLOGO</h3>
         
         <div class="product-card">
             <div class="product-img">
                 <img src="tenis-adistar-control5.JPG" alt="Adistar Control 5">
             </div>
             <div class="product-info">
-                <strong>TENIS ADISTAR CONTROL 5</strong>
+                <strong>ADISTAR CONTROL 5</strong>
                 <span>$599,950</span>
             </div>
-            <input type="number" class="qty-input" id="qty-1" value="0" min="0">
+            <input type="number" class="qty-input" id="qty-1" value="0" min="0" onchange="calculateTotal()">
         </div>
 
         <div class="product-card">
-            <div class="product-img">FOTO</div>
-            <div class="product-info">
-                <strong>FORUM LOW WHITE</strong>
-                <span>$380,000</span>
+            <div class="product-img">
+                <img src="tenis-originals.JPG" alt="Originals"> 
             </div>
-            <input type="number" class="qty-input" id="qty-2" value="0" min="0">
+            <div class="product-info">
+                <strong>ADIDAS ORIGINALS</strong>
+                <span>$450,000</span>
+            </div>
+            <input type="number" class="qty-input" id="qty-2" value="0" min="0" onchange="calculateTotal()">
         </div>
 
         <button class="btn-adidas" style="margin-top: 30px;" onclick="sendWhatsApp()">ENVIAR PEDIDO POR WHATSAPP</button>
@@ -209,34 +190,40 @@
 
     <footer>
         <strong>Harold A. Marín - Emprendedor Independiente</strong><br>
-        Carrera 21 B No 13A 64 - Barrio Colinas del Portal<br>
-        Caucasia, Antioquia | 3117700431
+        Carrera 21 B No 13A 64 - Barrio Colinas del Portal | 3117700431
     </footer>
+</div>
+
+<div class="total-bar" id="floating-total">
+    TOTAL PEDIDO: $0
 </div>
 
 <script>
     const products = [
-        { id: 1, name: "TENIS ADISTAR CONTROL 5", price: 599950 },
-        { id: 2, name: "FORUM LOW WHITE", price: 380000 }
+        { id: 1, name: "ADISTAR CONTROL 5", price: 599950 },
+        { id: 2, name: "ADIDAS ORIGINALS", price: 450000 } // Ajusta el precio real aquí
     ];
 
     window.onload = function() {
         if (!localStorage.getItem('consecutivo_pedido')) {
             localStorage.setItem('consecutivo_pedido', '1');
         }
-        updateBadge();
-
         const savedData = localStorage.getItem('adidas_client');
         if (savedData) {
             showClientInfo(JSON.parse(savedData));
         } else {
             document.getElementById('client-form').classList.remove('hidden');
         }
+        calculateTotal();
     };
 
-    function updateBadge() {
-        const nro = localStorage.getItem('consecutivo_pedido');
-        document.getElementById('nro-pedido-badge').innerText = 'N° ' + nro.padStart(3, '0');
+    function calculateTotal() {
+        let currentTotal = 0;
+        products.forEach(p => {
+            const qty = document.getElementById(`qty-${p.id}`).value;
+            currentTotal += (qty * p.price);
+        });
+        document.getElementById('floating-total').innerText = "TOTAL PEDIDO: $" + currentTotal.toLocaleString();
     }
 
     function saveClientData() {
@@ -248,7 +235,7 @@
         if(data.nombre && data.direccion && data.telefono) {
             localStorage.setItem('adidas_client', JSON.stringify(data));
             showClientInfo(data);
-        } else { alert("Por favor completa los campos."); }
+        }
     }
 
     function showClientInfo(data) {
@@ -266,15 +253,7 @@
     function sendWhatsApp() {
         const client = JSON.parse(localStorage.getItem('adidas_client'));
         let nroPedido = localStorage.getItem('consecutivo_pedido').padStart(3, '0');
-
-        let orderText = `*ORDEN DE PEDIDO N° ${nroPedido}*%0A`;
-        orderText += `*VENDEDOR: HAROLD A. MARÍN*%0A`;
-        orderText += `------------------------------%0A`;
-        orderText += `*CLIENTE:* ${client.nombre}%0A`;
-        orderText += `*DIRECCIÓN:* ${client.direccion}%0A`;
-        orderText += `*CELULAR:* ${client.telefono}%0A`;
-        orderText += `------------------------------%0A`;
-        orderText += `*PRODUCTOS:*%0A`;
+        let orderText = `*ORDEN DE PEDIDO N° ${nroPedido}*%0A*VENDEDOR: HAROLD A. MARÍN*%0A------------------------------%0A*CLIENTE:* ${client.nombre}%0A*DIRECCIÓN:* ${client.direccion}%0A*CELULAR:* ${client.telefono}%0A------------------------------%0A*PRODUCTOS:*%0A`;
 
         let total = 0;
         let hasItems = false;
@@ -283,8 +262,7 @@
             const qty = document.getElementById(`qty-${p.id}`).value;
             if (qty > 0) {
                 const subtotal = qty * p.price;
-                orderText += `• ${qty}x ${p.name}%0A`;
-                orderText += `  (P. Unit: $${p.price.toLocaleString()} | Sub: $${subtotal.toLocaleString()})%0A`;
+                orderText += `• ${qty}x ${p.name}%0A  (P. Unit: $${p.price.toLocaleString()} | Sub: $${subtotal.toLocaleString()})%0A`;
                 total += subtotal;
                 hasItems = true;
             }
@@ -292,13 +270,8 @@
 
         if(!hasItems) return alert("Selecciona productos.");
 
-        orderText += `------------------------------%0A`;
-        orderText += `*TOTAL A PAGAR: $${total.toLocaleString()}*%0A%0A`;
-        orderText += `*Generado por: Vibras Positivas*`;
-
+        orderText += `------------------------------%0A*TOTAL A PAGAR: $${total.toLocaleString()}*%0A%0A*Generado por: Vibras Positivas*`;
         localStorage.setItem('consecutivo_pedido', (parseInt(nroPedido) + 1).toString());
-        updateBadge();
-
         window.open(`https://wa.me/573117700431?text=${orderText}`, '_blank');
     }
 </script>

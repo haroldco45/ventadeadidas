@@ -19,26 +19,26 @@
             padding-bottom: 50px;
         }
 
+        /* Encabezado Negro Estilo Adidas */
         header {
             background: var(--adidas-black);
             color: white;
-            padding: 15px;
+            padding: 30px 10px;
             text-align: center;
         }
 
         .logo-container img {
-            max-width: 120px;
+            width: 180px; /* Tamaño del logo según tu referencia */
             height: auto;
-            filter: brightness(0) invert(1); /* Hace que el logo se vea blanco sobre negro */
+            margin-bottom: 15px;
         }
 
         .brand-name {
             display: block;
-            margin-top: 10px;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             font-weight: 900;
-            font-size: 1.2em;
+            font-size: 1.4em;
         }
 
         .container {
@@ -47,13 +47,14 @@
             margin: auto;
         }
 
-        /* Sección Cliente Registrado */
+        /* Cuadro de Información del Cliente */
         #client-info-display {
             background: var(--adidas-grey);
-            padding: 15px;
-            border-left: 5px solid var(--adidas-black);
-            margin-bottom: 20px;
+            padding: 20px;
+            border-left: 6px solid var(--adidas-black);
+            margin-bottom: 30px;
             position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
         .hidden { display: none; }
@@ -68,9 +69,9 @@
 
         input {
             width: 100%;
-            padding: 12px;
+            padding: 15px;
             margin: 5px 0 15px 0;
-            border: 1px solid #000;
+            border: 2px solid #000;
             box-sizing: border-box;
             font-size: 16px;
         }
@@ -78,71 +79,75 @@
         .btn-adidas {
             background: var(--adidas-black);
             color: white;
-            padding: 18px;
+            padding: 20px;
             width: 100%;
             border: none;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            font-size: 14px;
         }
 
         .btn-edit {
             background: #fff;
             border: 1px solid #000;
-            padding: 5px 10px;
-            font-size: 10px;
+            padding: 8px 12px;
+            font-size: 11px;
             cursor: pointer;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 15px;
+            text-transform: uppercase;
         }
 
-        /* Catálogo */
+        /* Lista de Productos */
         .product-card {
-            border-bottom: 1px solid #ddd;
-            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            padding: 20px 0;
             display: flex;
             align-items: center;
         }
 
         .product-img {
-            width: 80px;
-            height: 80px;
-            background: #f9f9f9;
-            margin-right: 15px;
-            border: 1px solid #eee;
+            width: 90px;
+            height: 90px;
+            background: #f4f4f4;
+            margin-right: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
+            font-size: 10px;
+            color: #999;
+            font-weight: bold;
         }
 
-        .product-img img { width: 100%; height: auto; }
-
         .product-info { flex-grow: 1; }
-        .product-info strong { display: block; font-size: 14px; text-transform: uppercase; }
+        .product-info strong { display: block; font-size: 15px; text-transform: uppercase; margin-bottom: 5px; }
         
         .qty-input {
-            width: 60px !important;
+            width: 65px !important;
             margin: 0 !important;
             text-align: center;
             font-weight: bold;
+            border: 1px solid #ccc;
         }
 
         .order-badge {
             background: #000;
             color: #fff;
-            padding: 2px 8px;
+            padding: 4px 10px;
             font-size: 12px;
             float: right;
+            font-weight: bold;
         }
 
         footer {
-            margin-top: 30px;
-            font-size: 11px;
+            margin-top: 40px;
+            font-size: 12px;
             text-align: center;
-            color: #666;
-            line-height: 1.5;
+            color: #444;
+            line-height: 1.6;
+            padding: 20px;
         }
     </style>
 </head>
@@ -150,34 +155,34 @@
 
 <header>
     <div class="logo-container">
-        <img src="hm-adidas.png" alt="HM Adidas Logo">
+        <img src="hm-adidas.png" alt="Harold & Marleny Logo">
     </div>
-    <span class="brand-name">Vibras Positivas</span>
+    <span class="brand-name">VIBRAS POSITIVAS</span>
 </header>
 
 <div class="container">
     
     <div id="client-form" class="hidden">
-        <h3 style="text-transform: uppercase; border-bottom: 2px solid #000;">Datos para el envío</h3>
+        <h3 style="text-transform: uppercase; border-bottom: 3px solid #000; padding-bottom: 10px;">Datos de Envío</h3>
         <label>Nombre Completo</label>
-        <input type="text" id="nombre" placeholder="Ej: Juan Perez">
-        <label>Dirección y Barrio</label>
-        <input type="text" id="direccion" placeholder="Ej: Carrera 21 #10-50 Barrio Centro">
+        <input type="text" id="nombre" placeholder="Ej: JUAN PEREZ">
+        <label>Dirección de Entrega</label>
+        <input type="text" id="direccion" placeholder="Ej: CARRERA 21 # 10-50 BARRIO EL CARMEN">
         <label>Celular</label>
         <input type="tel" id="telefono" placeholder="Ej: 3110000000">
-        <button class="btn-adidas" onclick="saveClientData()">GUARDAR Y VER CATÁLOGO</button>
+        <button class="btn-adidas" onclick="saveClientData()">INGRESAR AL CATÁLOGO</button>
     </div>
 
     <div id="client-info-display" class="hidden">
         <span class="order-badge" id="nro-pedido-badge">N° 001</span>
-        <strong>ENVIAR A:</strong>
-        <div id="display-name" style="text-transform: uppercase; margin-top: 5px; font-weight: bold;"></div>
-        <div id="display-dir" style="font-size: 13px; margin-top: 2px;"></div>
+        <strong style="font-size: 16px;">ENVIAR A:</strong>
+        <div id="display-name" style="text-transform: uppercase; margin-top: 8px; font-weight: 900; font-size: 18px;"></div>
+        <div id="display-dir" style="font-size: 14px; margin-top: 5px; color: #333;"></div>
         <button class="btn-edit" onclick="editClientData()">✎ EDITAR DATOS</button>
     </div>
 
     <div id="catalog">
-        <h3 style="text-transform: uppercase; letter-spacing: 1px;">Productos</h3>
+        <h3 style="text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">PRODUCTOS</h3>
         
         <div class="product-card">
             <div class="product-img">FOTO 1</div>
@@ -197,13 +202,13 @@
             <input type="number" class="qty-input" id="qty-2" value="0" min="0">
         </div>
 
-        <button class="btn-adidas" style="margin-top: 25px;" onclick="sendWhatsApp()">ENVIAR PEDIDO POR WHATSAPP</button>
+        <button class="btn-adidas" style="margin-top: 30px;" onclick="sendWhatsApp()">ENVIAR PEDIDO POR WHATSAPP</button>
     </div>
 
     <footer>
         <strong>Harold A. Marín - Emprendedor Independiente</strong><br>
         Carrera 21 B No 13A 64 - Barrio Colinas del Portal<br>
-        Caucasia, Antioquia | Tel: 3117700431
+        Caucasia, Antioquia | 3117700431
     </footer>
 </div>
 
@@ -241,7 +246,7 @@
         if(data.nombre && data.direccion && data.telefono) {
             localStorage.setItem('adidas_client', JSON.stringify(data));
             showClientInfo(data);
-        } else { alert("Por favor completa los datos."); }
+        } else { alert("Por favor completa todos los campos."); }
     }
 
     function showClientInfo(data) {
@@ -285,13 +290,13 @@
             }
         });
 
-        if(!hasItems) return alert("Agrega productos al carrito.");
+        if(!hasItems) return alert("No has seleccionado ningún producto.");
 
         orderText += `------------------------------%0A`;
         orderText += `*TOTAL A PAGAR: $${total.toLocaleString()}*%0A%0A`;
         orderText += `*Generado por: Vibras Positivas*`;
 
-        // Incrementar consecutivo
+        // Guardar incremento
         localStorage.setItem('consecutivo_pedido', (parseInt(nroPedido) + 1).toString());
         updateBadge();
 

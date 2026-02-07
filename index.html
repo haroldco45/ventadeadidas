@@ -16,7 +16,7 @@
             margin: 0;
             background-color: var(--adidas-white);
             color: var(--adidas-black);
-            padding-bottom: 100px; /* Espacio para el total flotante */
+            padding-bottom: 100px;
         }
 
         header {
@@ -102,7 +102,7 @@
         }
 
         .product-info { flex-grow: 1; }
-        .product-info strong { display: block; font-size: 14px; text-transform: uppercase; }
+        .product-info strong { display: block; font-size: 13px; text-transform: uppercase; }
         
         .qty-input {
             width: 65px !important;
@@ -111,7 +111,6 @@
             font-weight: bold;
         }
 
-        /* Barra de Total Flotante */
         .total-bar {
             position: fixed;
             bottom: 0;
@@ -123,7 +122,6 @@
             text-align: center;
             font-size: 18px;
             font-weight: bold;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
             z-index: 1000;
         }
 
@@ -168,7 +166,7 @@
                 <img src="tenis-adistar-control5.JPG" alt="Adistar Control 5">
             </div>
             <div class="product-info">
-                <strong>ADISTAR CONTROL 5</strong>
+                <strong>ADISTAR CONTROL 5 (GRIS)</strong>
                 <span>$599,950</span>
             </div>
             <input type="number" class="qty-input" id="qty-1" value="0" min="0" onchange="calculateTotal()">
@@ -176,11 +174,11 @@
 
         <div class="product-card">
             <div class="product-img">
-                <img src="tenis-originals.JPG" alt="Originals"> 
+                <img src="tenis-adistar-control3.JPG" alt="Adistar Control 3"> 
             </div>
             <div class="product-info">
-                <strong>ADIDAS ORIGINALS</strong>
-                <span>$450,000</span>
+                <strong>ADISTAR CONTROL 3</strong>
+                <span>$599,950</span>
             </div>
             <input type="number" class="qty-input" id="qty-2" value="0" min="0" onchange="calculateTotal()">
         </div>
@@ -200,8 +198,8 @@
 
 <script>
     const products = [
-        { id: 1, name: "ADISTAR CONTROL 5", price: 599950 },
-        { id: 2, name: "ADIDAS ORIGINALS", price: 450000 } // Ajusta el precio real aquí
+        { id: 1, name: "ADISTAR CONTROL 5 (GRIS)", price: 599950 },
+        { id: 2, name: "ADISTAR CONTROL 3", price: 599950 }
     ];
 
     window.onload = function() {

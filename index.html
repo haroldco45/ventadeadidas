@@ -159,7 +159,7 @@
     </div>
 
     <div id="catalog">
-        <h3 style="text-transform: uppercase; letter-spacing: 2px;">CATÁLOGO</h3>
+        <h3 style="text-transform: uppercase; letter-spacing: 2px;">CATÁLOGO DE VENTAS</h3>
         
         <div class="product-card">
             <div class="product-img">
@@ -183,6 +183,17 @@
             <input type="number" class="qty-input" id="qty-2" value="0" min="0" onchange="calculateTotal()">
         </div>
 
+        <div class="product-card">
+            <div class="product-img">
+                <img src="tenis-originals.JPG" alt="Originals"> 
+            </div>
+            <div class="product-info">
+                <strong>ADIDAS ORIGINALS CLASSIC</strong>
+                <span>$480,000</span>
+            </div>
+            <input type="number" class="qty-input" id="qty-3" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
         <button class="btn-adidas" style="margin-top: 30px;" onclick="sendWhatsApp()">ENVIAR PEDIDO POR WHATSAPP</button>
     </div>
 
@@ -199,7 +210,8 @@
 <script>
     const products = [
         { id: 1, name: "ADISTAR CONTROL 5 (GRIS)", price: 599950 },
-        { id: 2, name: "ADISTAR CONTROL 3", price: 599950 }
+        { id: 2, name: "ADISTAR CONTROL 3", price: 599950 },
+        { id: 3, name: "ADIDAS ORIGINALS CLASSIC", price: 480000 }
     ];
 
     window.onload = function() {

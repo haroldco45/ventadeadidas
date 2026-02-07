@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Store - Harold A. Marín</title>
+    <title>Adidas - Harold A. Marín</title>
     <style>
         :root {
             --adidas-black: #000000;
             --adidas-white: #ffffff;
             --adidas-grey: #ebeff1;
+            --adidas-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: 'Adineue PRO', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-family: var(--adidas-font);
             margin: 0;
             background-color: var(--adidas-white);
             color: var(--adidas-black);
@@ -21,157 +22,214 @@
         header {
             background: var(--adidas-black);
             color: white;
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            font-weight: 900;
+            border-bottom: 4px solid #333;
         }
 
         .container {
             padding: 20px;
-            max-width: 600px;
+            max-width: 500px;
             margin: auto;
         }
 
-        /* Sección de Cliente */
+        /* Sección Cliente */
         #client-section {
             background: var(--adidas-grey);
             padding: 15px;
-            border-radius: 4px;
+            border-radius: 2px;
             margin-bottom: 20px;
+            border-left: 5px solid var(--adidas-black);
         }
 
         .hidden { display: none; }
 
+        label {
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 10px;
+        }
+
         input {
             width: 100%;
             padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
+            margin: 5px 0 15px 0;
+            border: 1px solid #000;
             box-sizing: border-box;
-            text-transform: uppercase;
+            font-size: 14px;
         }
 
         .btn-adidas {
             background: var(--adidas-black);
             color: white;
-            padding: 15px;
+            padding: 18px;
             width: 100%;
             border: none;
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            transition: 0.3s;
+            letter-spacing: 1px;
+            transition: 0.2s;
+        }
+
+        .btn-adidas:active {
+            transform: scale(0.98);
+            background: #333;
         }
 
         .btn-edit {
-            background: none;
+            background: #fff;
             border: 1px solid #000;
-            padding: 5px 10px;
-            font-size: 10px;
+            padding: 4px 8px;
+            font-size: 11px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 5px;
+            font-weight: bold;
         }
 
         /* Catálogo */
         .product-card {
-            border-bottom: 2px solid var(--adidas-grey);
-            padding: 20px 0;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0;
             display: flex;
             align-items: center;
         }
 
         .product-img {
-            width: 100px;
-            height: 100px;
-            background: #eee;
+            width: 80px;
+            height: 80px;
+            background: #f0f0f0;
             margin-right: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
-            color: #999;
+            font-size: 9px;
+            text-align: center;
+            border: 1px solid #eee;
         }
 
         .product-info { flex-grow: 1; }
+        .product-info strong { display: block; font-size: 15px; }
+        .product-info span { color: #555; }
 
         .qty-input {
-            width: 60px;
+            width: 50px !important;
+            margin: 0 !important;
             text-align: center;
+            font-weight: bold;
         }
 
         footer {
-            margin-top: 50px;
-            font-size: 12px;
+            margin-top: 40px;
+            font-size: 11px;
             text-align: center;
-            color: #666;
-            padding-bottom: 30px;
+            color: #888;
+            line-height: 1.6;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .order-badge {
+            background: #000;
+            color: #fff;
+            padding: 2px 6px;
+            font-size: 12px;
+            float: right;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <div id="logo-placeholder">ADIDAS SALES</div>
+    ADIDAS SALES
 </header>
 
 <div class="container">
     
-    <div id="client-form" class="hidden">
-        <h3>DATOS DE ENVÍO</h3>
-        <input type="text" id="nombre" placeholder="NOMBRE COMPLETO">
-        <input type="text" id="direccion" placeholder="DIRECCIÓN DE ENTREGA">
-        <input type="tel" id="telefono" placeholder="CELULAR">
-        <button class="btn-adidas" onclick="saveClientData()">CONTINUAR AL CATÁLOGO</button>
+    <div id="client-form-container">
+        <div id="client-form" class="hidden">
+            <h3 style="text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 5px;">Datos de Envío</h3>
+            <label>Nombre Completo</label>
+            <input type="text" id="nombre" placeholder="Ej: JUAN PEREZ">
+            <label>Dirección de Entrega</label>
+            <input type="text" id="direccion" placeholder="Ej: CALLE 10 # 5-20">
+            <label>WhatsApp / Celular</label>
+            <input type="tel" id="telefono" placeholder="Ej: 3110000000">
+            <button class="btn-adidas" onclick="saveClientData()">GUARDAR Y VER PRODUCTOS</button>
+        </div>
+
+        <div id="client-info" class="hidden">
+            <div id="client-section">
+                <span class="order-badge" id="next-order-badge">N° 001</span>
+                <strong>ENTREGAR A:</strong>
+                <div id="display-name" style="text-transform: uppercase; margin-top: 5px;"></div>
+                <div id="display-dir" style="font-size: 13px; color: #444;"></div>
+                <button class="btn-edit" onclick="editClientData()">✎ EDITAR DIRECCIÓN</button>
+            </div>
+        </div>
     </div>
 
-    <div id="client-info" class="hidden">
-        <p><strong>ENVIAR A:</strong> <span id="display-name"></span></p>
-        <p style="font-size: 0.9em; margin-top: -10px;"><span id="display-dir"></span></p>
-        <button class="btn-edit" onclick="editClientData()">✎ EDITAR DATOS</button>
-    </div>
-
-    <hr>
-
-    <div id="catalog">
-        <h3>CATÁLOGO</h3>
+    <div id="catalog-section">
+        <h3 style="text-transform: uppercase; letter-spacing: 1px;">Productos Disponibles</h3>
         
         <div class="product-card">
-            <div class="product-img">IMAGEN PRONTO</div>
+            <div class="product-img">ADIDAS<br>FOTO 1</div>
             <div class="product-info">
-                <strong>SUPERSTAR CLASSIC</strong><br>
-                <span>$350,000</span>
+                <strong>FORUM LOW WHITE</strong>
+                <span>$380,000</span>
             </div>
             <input type="number" class="qty-input" id="qty-1" value="0" min="0">
         </div>
 
         <div class="product-card">
-            <div class="product-img">IMAGEN PRONTO</div>
+            <div class="product-img">ADIDAS<br>FOTO 2</div>
             <div class="product-info">
-                <strong>ULTRABOOST LIGHT</strong><br>
-                <span>$680,000</span>
+                <strong>OZWEEGO BLACK</strong>
+                <span>$420,000</span>
             </div>
             <input type="number" class="qty-input" id="qty-2" value="0" min="0">
         </div>
 
-        <button class="btn-adidas" style="margin-top: 30px;" onclick="sendWhatsApp()">ENVIAR PEDIDO POR WHATSAPP</button>
+        <div class="product-card">
+            <div class="product-img">ADIDAS<br>FOTO 3</div>
+            <div class="product-info">
+                <strong>SAMBA OG</strong>
+                <span>$320,000</span>
+            </div>
+            <input type="number" class="qty-input" id="qty-3" value="0" min="0">
+        </div>
+
+        <button class="btn-adidas" style="margin-top: 25px;" onclick="sendWhatsApp()">FINALIZAR PEDIDO</button>
     </div>
 
     <footer>
-        <p>Propietario: Harold A. Marín</p>
-        <p>Carrera 21 B No 13A 64 - Colinas del Portal, Caucasia</p>
+        <strong>Harold A. Marín</strong><br>
+        Carrera 21 B No 13A 64 - Colinas del Portal<br>
+        Caucasia, Antioquia | Tel: 3117700431
     </footer>
 </div>
 
 <script>
-    // Precios de prueba
+    // Configuración de productos (Se puede ampliar fácilmente)
     const products = [
-        { id: 1, name: "SUPERSTAR CLASSIC", price: 350000 },
-        { id: 2, name: "ULTRABOOST LIGHT", price: 680000 }
+        { id: 1, name: "FORUM LOW WHITE", price: 380000 },
+        { id: 2, name: "OZWEEGO BLACK", price: 420000 },
+        { id: 3, name: "SAMBA OG", price: 320000 }
     ];
 
-    // Al cargar la página
     window.onload = function() {
+        // Inicializar consecutivo si es primera vez
+        if (!localStorage.getItem('consecutivo_pedido')) {
+            localStorage.setItem('consecutivo_pedido', '1');
+        }
+        updateBadge();
+
+        // Cargar datos del cliente si existen
         const savedData = localStorage.getItem('adidas_client');
         if (savedData) {
             showClientInfo(JSON.parse(savedData));
@@ -180,18 +238,23 @@
         }
     };
 
+    function updateBadge() {
+        const nro = localStorage.getItem('consecutivo_pedido');
+        document.getElementById('next-order-badge').innerText = 'N° ' + nro.padStart(3, '0');
+    }
+
     function saveClientData() {
         const data = {
-            nombre: document.getElementById('nombre').value,
-            direccion: document.getElementById('direccion').value,
-            telefono: document.getElementById('telefono').value
+            nombre: document.getElementById('nombre').value.trim(),
+            direccion: document.getElementById('direccion').value.trim(),
+            telefono: document.getElementById('telefono').value.trim()
         };
 
         if(data.nombre && data.direccion && data.telefono) {
             localStorage.setItem('adidas_client', JSON.stringify(data));
             showClientInfo(data);
         } else {
-            alert("Por favor completa todos los datos.");
+            alert("Por favor, completa tus datos para el envío.");
         }
     }
 
@@ -209,15 +272,24 @@
 
     function sendWhatsApp() {
         const client = JSON.parse(localStorage.getItem('adidas_client'));
-        if(!client) return alert("Primero ingresa tus datos.");
+        if(!client) {
+            alert("Por favor ingresa tus datos primero.");
+            window.scrollTo(0,0);
+            return;
+        }
 
-        let orderText = `*FACTURA DE VENTA - ADIDAS*%0A`;
+        // Obtener y formatear consecutivo
+        let nroPedido = localStorage.getItem('consecutivo_pedido');
+        let nroFormateado = nroPedido.padStart(3, '0');
+
+        let orderText = `*ORDEN DE PEDIDO N° ${nroFormateado}*%0A`;
+        orderText += `*ADIDAS - HAROLD A. MARÍN*%0A`;
         orderText += `------------------------------%0A`;
-        orderText += `*CLIENTE:* ${client.nombre}%0A`;
-        orderText += `*DIRECCIÓN:* ${client.direccion}%0A`;
-        orderText += `*TEL:* ${client.telefono}%0A`;
+        orderText += `*CLIENTE:* ${client.nombre.toUpperCase()}%0A`;
+        orderText += `*DIRECCIÓN:* ${client.direccion.toUpperCase()}%0A`;
+        orderText += `*CELULAR:* ${client.telefono}%0A`;
         orderText += `------------------------------%0A`;
-        orderText += `*PEDIDO:*%0A`;
+        orderText += `*PRODUCTOS:*%0A`;
 
         let total = 0;
         let hasItems = false;
@@ -232,12 +304,17 @@
             }
         });
 
-        if(!hasItems) return alert("Agrega al menos un producto.");
+        if(!hasItems) return alert("Selecciona al menos un producto.");
 
         orderText += `------------------------------%0A`;
         orderText += `*TOTAL A PAGAR: $${total.toLocaleString()}*%0A%0A`;
-        orderText += `_Vendedor: Harold A. Marín_`;
+        orderText += `_Pedido generado desde la App Adidas_`;
 
+        // Incrementar consecutivo
+        localStorage.setItem('consecutivo_pedido', (parseInt(nroPedido) + 1).toString());
+        updateBadge();
+
+        // Enviar a WhatsApp
         const whatsappUrl = `https://wa.me/573117700431?text=${orderText}`;
         window.open(whatsappUrl, '_blank');
     }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibras Positivas - Ventas</title>
+    <title>Vibras Positivas - Harold & Marleny</title>
     <style>
         :root {
             --adidas-black: #000000;
@@ -16,16 +16,29 @@
             margin: 0;
             background-color: var(--adidas-white);
             color: var(--adidas-black);
+            padding-bottom: 50px;
         }
 
         header {
             background: var(--adidas-black);
             color: white;
-            padding: 20px;
+            padding: 15px;
             text-align: center;
+        }
+
+        .logo-container img {
+            max-width: 120px;
+            height: auto;
+            filter: brightness(0) invert(1); /* Hace que el logo se vea blanco sobre negro */
+        }
+
+        .brand-name {
+            display: block;
+            margin-top: 10px;
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 900;
+            font-size: 1.2em;
         }
 
         .container {
@@ -34,18 +47,19 @@
             margin: auto;
         }
 
-        #client-section {
+        /* Sección Cliente Registrado */
+        #client-info-display {
             background: var(--adidas-grey);
             padding: 15px;
-            border-radius: 2px;
-            margin-bottom: 20px;
             border-left: 5px solid var(--adidas-black);
+            margin-bottom: 20px;
+            position: relative;
         }
 
         .hidden { display: none; }
 
         label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: bold;
             text-transform: uppercase;
             display: block;
@@ -58,6 +72,7 @@
             margin: 5px 0 15px 0;
             border: 1px solid #000;
             box-sizing: border-box;
+            font-size: 16px;
         }
 
         .btn-adidas {
@@ -69,17 +84,20 @@
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .btn-edit {
             background: #fff;
             border: 1px solid #000;
-            padding: 4px 8px;
-            font-size: 11px;
+            padding: 5px 10px;
+            font-size: 10px;
             cursor: pointer;
-            margin-top: 5px;
+            font-weight: bold;
+            margin-top: 10px;
         }
 
+        /* Catálogo */
         .product-card {
             border-bottom: 1px solid #ddd;
             padding: 15px 0;
@@ -90,74 +108,79 @@
         .product-img {
             width: 80px;
             height: 80px;
-            background: #f0f0f0;
+            background: #f9f9f9;
             margin-right: 15px;
+            border: 1px solid #eee;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 9px;
-            text-align: center;
+            overflow: hidden;
         }
+
+        .product-img img { width: 100%; height: auto; }
 
         .product-info { flex-grow: 1; }
+        .product-info strong { display: block; font-size: 14px; text-transform: uppercase; }
+        
         .qty-input {
-            width: 50px !important;
+            width: 60px !important;
             margin: 0 !important;
             text-align: center;
-        }
-
-        footer {
-            margin-top: 40px;
-            font-size: 11px;
-            text-align: center;
-            color: #888;
-            border-top: 1px solid #eee;
-            padding-top: 20px;
+            font-weight: bold;
         }
 
         .order-badge {
             background: #000;
             color: #fff;
-            padding: 2px 6px;
+            padding: 2px 8px;
             font-size: 12px;
             float: right;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 11px;
+            text-align: center;
+            color: #666;
+            line-height: 1.5;
         }
     </style>
 </head>
 <body>
 
-<header>VIBRAS POSITIVAS</header>
+<header>
+    <div class="logo-container">
+        <img src="hm-adidas.png" alt="HM Adidas Logo">
+    </div>
+    <span class="brand-name">Vibras Positivas</span>
+</header>
 
 <div class="container">
     
-    <div id="client-form-container">
-        <div id="client-form" class="hidden">
-            <h3 style="text-transform: uppercase; border-bottom: 2px solid #000;">Datos de Envío</h3>
-            <label>Nombre Completo</label>
-            <input type="text" id="nombre" placeholder="Nombre del cliente">
-            <label>Dirección de Entrega</label>
-            <input type="text" id="direccion" placeholder="Dirección y Barrio">
-            <label>Celular</label>
-            <input type="tel" id="telefono" placeholder="Número de contacto">
-            <button class="btn-adidas" onclick="saveClientData()">GUARDAR Y CONTINUAR</button>
-        </div>
+    <div id="client-form" class="hidden">
+        <h3 style="text-transform: uppercase; border-bottom: 2px solid #000;">Datos para el envío</h3>
+        <label>Nombre Completo</label>
+        <input type="text" id="nombre" placeholder="Ej: Juan Perez">
+        <label>Dirección y Barrio</label>
+        <input type="text" id="direccion" placeholder="Ej: Carrera 21 #10-50 Barrio Centro">
+        <label>Celular</label>
+        <input type="tel" id="telefono" placeholder="Ej: 3110000000">
+        <button class="btn-adidas" onclick="saveClientData()">GUARDAR Y VER CATÁLOGO</button>
+    </div>
 
-        <div id="client-info" class="hidden">
-            <div id="client-section">
-                <span class="order-badge" id="next-order-badge">N° 001</span>
-                <strong>ENTREGAR A:</strong>
-                <div id="display-name" style="text-transform: uppercase;"></div>
-                <div id="display-dir" style="font-size: 13px;"></div>
-                <button class="btn-edit" onclick="editClientData()">✎ EDITAR DATOS</button>
-            </div>
-        </div>
+    <div id="client-info-display" class="hidden">
+        <span class="order-badge" id="nro-pedido-badge">N° 001</span>
+        <strong>ENVIAR A:</strong>
+        <div id="display-name" style="text-transform: uppercase; margin-top: 5px; font-weight: bold;"></div>
+        <div id="display-dir" style="font-size: 13px; margin-top: 2px;"></div>
+        <button class="btn-edit" onclick="editClientData()">✎ EDITAR DATOS</button>
     </div>
 
     <div id="catalog">
-        <h3 style="text-transform: uppercase;">Catálogo de Ventas</h3>
+        <h3 style="text-transform: uppercase; letter-spacing: 1px;">Productos</h3>
         
         <div class="product-card">
-            <div class="product-img">ADIDAS<br>FOTO 1</div>
+            <div class="product-img">FOTO 1</div>
             <div class="product-info">
                 <strong>FORUM LOW WHITE</strong>
                 <span>$380,000</span>
@@ -166,7 +189,7 @@
         </div>
 
         <div class="product-card">
-            <div class="product-img">ADIDAS<br>FOTO 2</div>
+            <div class="product-img">FOTO 2</div>
             <div class="product-info">
                 <strong>OZWEEGO BLACK</strong>
                 <span>$420,000</span>
@@ -174,13 +197,13 @@
             <input type="number" class="qty-input" id="qty-2" value="0" min="0">
         </div>
 
-        <button class="btn-adidas" style="margin-top: 25px;" onclick="sendWhatsApp()">ENVIAR PEDIDO</button>
+        <button class="btn-adidas" style="margin-top: 25px;" onclick="sendWhatsApp()">ENVIAR PEDIDO POR WHATSAPP</button>
     </div>
 
     <footer>
         <strong>Harold A. Marín - Emprendedor Independiente</strong><br>
         Carrera 21 B No 13A 64 - Barrio Colinas del Portal<br>
-        Caucasia, Antioquia | 3117700431
+        Caucasia, Antioquia | Tel: 3117700431
     </footer>
 </div>
 
@@ -206,7 +229,7 @@
 
     function updateBadge() {
         const nro = localStorage.getItem('consecutivo_pedido');
-        document.getElementById('next-order-badge').innerText = 'N° ' + nro.padStart(3, '0');
+        document.getElementById('nro-pedido-badge').innerText = 'N° ' + nro.padStart(3, '0');
     }
 
     function saveClientData() {
@@ -218,25 +241,25 @@
         if(data.nombre && data.direccion && data.telefono) {
             localStorage.setItem('adidas_client', JSON.stringify(data));
             showClientInfo(data);
-        } else {
-            alert("Completa todos los datos.");
-        }
+        } else { alert("Por favor completa los datos."); }
     }
 
     function showClientInfo(data) {
         document.getElementById('client-form').classList.add('hidden');
-        document.getElementById('client-info').classList.remove('hidden');
+        document.getElementById('client-info-display').classList.remove('hidden');
         document.getElementById('display-name').innerText = data.nombre;
-        document.getElementById('display-dir').innerText = data.direccion + " | " + data.telefono;
+        document.getElementById('display-dir').innerText = data.direccion + " | TEL: " + data.telefono;
     }
 
     function editClientData() {
-        document.getElementById('client-info').classList.add('hidden');
+        document.getElementById('client-info-display').classList.add('hidden');
         document.getElementById('client-form').classList.remove('hidden');
     }
 
     function sendWhatsApp() {
         const client = JSON.parse(localStorage.getItem('adidas_client'));
+        if(!client) return alert("Ingresa tus datos de envío.");
+
         let nroPedido = localStorage.getItem('consecutivo_pedido').padStart(3, '0');
 
         let orderText = `*ORDEN DE PEDIDO N° ${nroPedido}*%0A`;
@@ -255,20 +278,20 @@
             const qty = document.getElementById(`qty-${p.id}`).value;
             if (qty > 0) {
                 const subtotal = qty * p.price;
-                // Se agrega el precio unitario ($${p.price.toLocaleString()}) al mensaje
                 orderText += `• ${qty}x ${p.name}%0A`;
-                orderText += `  (P. Unit: $${p.price.toLocaleString()} | Subtotal: $${subtotal.toLocaleString()})%0A`;
+                orderText += `  (P. Unit: $${p.price.toLocaleString()} | Sub: $${subtotal.toLocaleString()})%0A`;
                 total += subtotal;
                 hasItems = true;
             }
         });
 
-        if(!hasItems) return alert("Selecciona productos.");
+        if(!hasItems) return alert("Agrega productos al carrito.");
 
         orderText += `------------------------------%0A`;
         orderText += `*TOTAL A PAGAR: $${total.toLocaleString()}*%0A%0A`;
-        orderText += `*Generado por: Vibras Positivas*`; // Nuevo cierre personalizado
+        orderText += `*Generado por: Vibras Positivas*`;
 
+        // Incrementar consecutivo
         localStorage.setItem('consecutivo_pedido', (parseInt(nroPedido) + 1).toString());
         updateBadge();
 

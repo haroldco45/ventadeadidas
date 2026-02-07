@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adidas - Harold A. Marín</title>
+    <title>Vibras Positivas - Ventas</title>
     <style>
         :root {
             --adidas-black: #000000;
             --adidas-white: #ffffff;
             --adidas-grey: #ebeff1;
-            --adidas-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
         body {
-            font-family: var(--adidas-font);
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             margin: 0;
             background-color: var(--adidas-white);
             color: var(--adidas-black);
@@ -27,7 +26,6 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             font-weight: 900;
-            border-bottom: 4px solid #333;
         }
 
         .container {
@@ -36,7 +34,6 @@
             margin: auto;
         }
 
-        /* Sección Cliente */
         #client-section {
             background: var(--adidas-grey);
             padding: 15px;
@@ -61,7 +58,6 @@
             margin: 5px 0 15px 0;
             border: 1px solid #000;
             box-sizing: border-box;
-            font-size: 14px;
         }
 
         .btn-adidas {
@@ -73,13 +69,6 @@
             font-weight: bold;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: 0.2s;
-        }
-
-        .btn-adidas:active {
-            transform: scale(0.98);
-            background: #333;
         }
 
         .btn-edit {
@@ -89,10 +78,8 @@
             font-size: 11px;
             cursor: pointer;
             margin-top: 5px;
-            font-weight: bold;
         }
 
-        /* Catálogo */
         .product-card {
             border-bottom: 1px solid #ddd;
             padding: 15px 0;
@@ -110,18 +97,13 @@
             justify-content: center;
             font-size: 9px;
             text-align: center;
-            border: 1px solid #eee;
         }
 
         .product-info { flex-grow: 1; }
-        .product-info strong { display: block; font-size: 15px; }
-        .product-info span { color: #555; }
-
         .qty-input {
             width: 50px !important;
             margin: 0 !important;
             text-align: center;
-            font-weight: bold;
         }
 
         footer {
@@ -129,7 +111,6 @@
             font-size: 11px;
             text-align: center;
             color: #888;
-            line-height: 1.6;
             border-top: 1px solid #eee;
             padding-top: 20px;
         }
@@ -145,37 +126,35 @@
 </head>
 <body>
 
-<header>
-    ADIDAS SALES
-</header>
+<header>VIBRAS POSITIVAS</header>
 
 <div class="container">
     
     <div id="client-form-container">
         <div id="client-form" class="hidden">
-            <h3 style="text-transform: uppercase; border-bottom: 2px solid #000; padding-bottom: 5px;">Datos de Envío</h3>
+            <h3 style="text-transform: uppercase; border-bottom: 2px solid #000;">Datos de Envío</h3>
             <label>Nombre Completo</label>
-            <input type="text" id="nombre" placeholder="Ej: JUAN PEREZ">
+            <input type="text" id="nombre" placeholder="Nombre del cliente">
             <label>Dirección de Entrega</label>
-            <input type="text" id="direccion" placeholder="Ej: CALLE 10 # 5-20">
-            <label>WhatsApp / Celular</label>
-            <input type="tel" id="telefono" placeholder="Ej: 3110000000">
-            <button class="btn-adidas" onclick="saveClientData()">GUARDAR Y VER PRODUCTOS</button>
+            <input type="text" id="direccion" placeholder="Dirección y Barrio">
+            <label>Celular</label>
+            <input type="tel" id="telefono" placeholder="Número de contacto">
+            <button class="btn-adidas" onclick="saveClientData()">GUARDAR Y CONTINUAR</button>
         </div>
 
         <div id="client-info" class="hidden">
             <div id="client-section">
                 <span class="order-badge" id="next-order-badge">N° 001</span>
                 <strong>ENTREGAR A:</strong>
-                <div id="display-name" style="text-transform: uppercase; margin-top: 5px;"></div>
-                <div id="display-dir" style="font-size: 13px; color: #444;"></div>
-                <button class="btn-edit" onclick="editClientData()">✎ EDITAR DIRECCIÓN</button>
+                <div id="display-name" style="text-transform: uppercase;"></div>
+                <div id="display-dir" style="font-size: 13px;"></div>
+                <button class="btn-edit" onclick="editClientData()">✎ EDITAR DATOS</button>
             </div>
         </div>
     </div>
 
-    <div id="catalog-section">
-        <h3 style="text-transform: uppercase; letter-spacing: 1px;">Productos Disponibles</h3>
+    <div id="catalog">
+        <h3 style="text-transform: uppercase;">Catálogo de Ventas</h3>
         
         <div class="product-card">
             <div class="product-img">ADIDAS<br>FOTO 1</div>
@@ -195,41 +174,28 @@
             <input type="number" class="qty-input" id="qty-2" value="0" min="0">
         </div>
 
-        <div class="product-card">
-            <div class="product-img">ADIDAS<br>FOTO 3</div>
-            <div class="product-info">
-                <strong>SAMBA OG</strong>
-                <span>$320,000</span>
-            </div>
-            <input type="number" class="qty-input" id="qty-3" value="0" min="0">
-        </div>
-
-        <button class="btn-adidas" style="margin-top: 25px;" onclick="sendWhatsApp()">FINALIZAR PEDIDO</button>
+        <button class="btn-adidas" style="margin-top: 25px;" onclick="sendWhatsApp()">ENVIAR PEDIDO</button>
     </div>
 
     <footer>
-        <strong>Harold A. Marín</strong><br>
-        Carrera 21 B No 13A 64 - Colinas del Portal<br>
-        Caucasia, Antioquia | Tel: 3117700431
+        <strong>Harold A. Marín - Emprendedor Independiente</strong><br>
+        Carrera 21 B No 13A 64 - Barrio Colinas del Portal<br>
+        Caucasia, Antioquia | 3117700431
     </footer>
 </div>
 
 <script>
-    // Configuración de productos (Se puede ampliar fácilmente)
     const products = [
         { id: 1, name: "FORUM LOW WHITE", price: 380000 },
-        { id: 2, name: "OZWEEGO BLACK", price: 420000 },
-        { id: 3, name: "SAMBA OG", price: 320000 }
+        { id: 2, name: "OZWEEGO BLACK", price: 420000 }
     ];
 
     window.onload = function() {
-        // Inicializar consecutivo si es primera vez
         if (!localStorage.getItem('consecutivo_pedido')) {
             localStorage.setItem('consecutivo_pedido', '1');
         }
         updateBadge();
 
-        // Cargar datos del cliente si existen
         const savedData = localStorage.getItem('adidas_client');
         if (savedData) {
             showClientInfo(JSON.parse(savedData));
@@ -245,16 +211,15 @@
 
     function saveClientData() {
         const data = {
-            nombre: document.getElementById('nombre').value.trim(),
-            direccion: document.getElementById('direccion').value.trim(),
-            telefono: document.getElementById('telefono').value.trim()
+            nombre: document.getElementById('nombre').value.toUpperCase(),
+            direccion: document.getElementById('direccion').value.toUpperCase(),
+            telefono: document.getElementById('telefono').value
         };
-
         if(data.nombre && data.direccion && data.telefono) {
             localStorage.setItem('adidas_client', JSON.stringify(data));
             showClientInfo(data);
         } else {
-            alert("Por favor, completa tus datos para el envío.");
+            alert("Completa todos los datos.");
         }
     }
 
@@ -272,21 +237,13 @@
 
     function sendWhatsApp() {
         const client = JSON.parse(localStorage.getItem('adidas_client'));
-        if(!client) {
-            alert("Por favor ingresa tus datos primero.");
-            window.scrollTo(0,0);
-            return;
-        }
+        let nroPedido = localStorage.getItem('consecutivo_pedido').padStart(3, '0');
 
-        // Obtener y formatear consecutivo
-        let nroPedido = localStorage.getItem('consecutivo_pedido');
-        let nroFormateado = nroPedido.padStart(3, '0');
-
-        let orderText = `*ORDEN DE PEDIDO N° ${nroFormateado}*%0A`;
-        orderText += `*ADIDAS - HAROLD A. MARÍN*%0A`;
+        let orderText = `*ORDEN DE PEDIDO N° ${nroPedido}*%0A`;
+        orderText += `*VENDEDOR: HAROLD A. MARÍN*%0A`;
         orderText += `------------------------------%0A`;
-        orderText += `*CLIENTE:* ${client.nombre.toUpperCase()}%0A`;
-        orderText += `*DIRECCIÓN:* ${client.direccion.toUpperCase()}%0A`;
+        orderText += `*CLIENTE:* ${client.nombre}%0A`;
+        orderText += `*DIRECCIÓN:* ${client.direccion}%0A`;
         orderText += `*CELULAR:* ${client.telefono}%0A`;
         orderText += `------------------------------%0A`;
         orderText += `*PRODUCTOS:*%0A`;
@@ -298,25 +255,24 @@
             const qty = document.getElementById(`qty-${p.id}`).value;
             if (qty > 0) {
                 const subtotal = qty * p.price;
-                orderText += `- ${qty}x ${p.name} ($${subtotal.toLocaleString()})%0A`;
+                // Se agrega el precio unitario ($${p.price.toLocaleString()}) al mensaje
+                orderText += `• ${qty}x ${p.name}%0A`;
+                orderText += `  (P. Unit: $${p.price.toLocaleString()} | Subtotal: $${subtotal.toLocaleString()})%0A`;
                 total += subtotal;
                 hasItems = true;
             }
         });
 
-        if(!hasItems) return alert("Selecciona al menos un producto.");
+        if(!hasItems) return alert("Selecciona productos.");
 
         orderText += `------------------------------%0A`;
         orderText += `*TOTAL A PAGAR: $${total.toLocaleString()}*%0A%0A`;
-        orderText += `_Pedido generado desde la App Adidas_`;
+        orderText += `*Generado por: Vibras Positivas*`; // Nuevo cierre personalizado
 
-        // Incrementar consecutivo
         localStorage.setItem('consecutivo_pedido', (parseInt(nroPedido) + 1).toString());
         updateBadge();
 
-        // Enviar a WhatsApp
-        const whatsappUrl = `https://wa.me/573117700431?text=${orderText}`;
-        window.open(whatsappUrl, '_blank');
+        window.open(`https://wa.me/573117700431?text=${orderText}`, '_blank');
     }
 </script>
 

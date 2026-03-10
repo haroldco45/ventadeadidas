@@ -169,7 +169,29 @@
 
     <div id="catalog">
         <h3 style="text-transform: uppercase; letter-spacing: 2px;">CATÁLOGO DE VENTAS</h3>
-        
+
+        <div class="product-card">
+            <div class="product-img">
+                <img src="deforozamercedes.JPG" alt="Mercedes-AMG Motorsport">
+            </div>
+            <div class="product-info">
+                <strong>ADIDAS MERCEDES-AMG MOTORSPORT</strong>
+                <span>$389,970</span>
+            </div>
+            <input type="number" class="qty-input" id="qty-5" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
+        <div class="product-card">
+            <div class="product-img">
+                <img src="tenisSL72OG.JPG" alt="Tenis SL 72 OG">
+            </div>
+            <div class="product-info">
+                <strong>ADIDAS SL 72 OG (VERDE)</strong>
+                <span>$329,970</span>
+            </div>
+            <input type="number" class="qty-input" id="qty-6" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
         <div class="product-card">
             <div class="product-img">
                 <img src="chaquetadelargo.JPG" alt="Chaqueta Corta Adidas">
@@ -233,7 +255,9 @@
         { id: 1, name: "ADISTAR CONTROL 5 (GRIS)", price: 599950 },
         { id: 2, name: "ADISTAR CONTROL 3", price: 449950 },
         { id: 3, name: "ADIDAS SL-72 RS", price: 549950 },
-        { id: 4, name: "CHAQUETA CORTA ADIDAS (BLANCA)", price: 279960 }
+        { id: 4, name: "CHAQUETA CORTA ADIDAS (BLANCA)", price: 279960 },
+        { id: 5, name: "ADIDAS MERCEDES-AMG MOTORSPORT", price: 389970 },
+        { id: 6, name: "ADIDAS SL 72 OG (VERDE)", price: 329970 }
     ];
 
     window.onload = function() {

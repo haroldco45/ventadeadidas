@@ -131,6 +131,15 @@
             text-align: center;
             color: #444;
             padding: 20px;
+            line-height: 1.6;
+        }
+
+        .copyright {
+            margin-top: 10px;
+            font-weight: bold;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -161,6 +170,17 @@
     <div id="catalog">
         <h3 style="text-transform: uppercase; letter-spacing: 2px;">CATÁLOGO DE VENTAS</h3>
         
+        <div class="product-card">
+            <div class="product-img">
+                <img src="chaquetadelargo.JPG" alt="Chaqueta Corta Adidas">
+            </div>
+            <div class="product-info">
+                <strong>CHAQUETA CORTA ADIDAS (BLANCA)</strong>
+                <span>$279,960</span>
+            </div>
+            <input type="number" class="qty-input" id="qty-4" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
         <div class="product-card">
             <div class="product-img">
                 <img src="tenis-adistar-control5.JPG" alt="Adistar Control 5">
@@ -200,6 +220,7 @@
     <footer>
         <strong>Harold A. Marín - Emprendedor Independiente</strong><br>
         Carrera 21 B No 13A 64 - Barrio Colinas del Portal | 3117700431
+        <div class="copyright">App desarrollada por Vibras Positivas &copy; Derechos de Autor 2026</div>
     </footer>
 </div>
 
@@ -211,7 +232,8 @@
     const products = [
         { id: 1, name: "ADISTAR CONTROL 5 (GRIS)", price: 599950 },
         { id: 2, name: "ADISTAR CONTROL 3", price: 449950 },
-        { id: 3, name: "ADIDAS SL-72 RS", price: 549950 }
+        { id: 3, name: "ADIDAS SL-72 RS", price: 549950 },
+        { id: 4, name: "CHAQUETA CORTA ADIDAS (BLANCA)", price: 279960 }
     ];
 
     window.onload = function() {
@@ -230,8 +252,11 @@
     function calculateTotal() {
         let currentTotal = 0;
         products.forEach(p => {
-            const qty = document.getElementById(`qty-${p.id}`).value;
-            currentTotal += (qty * p.price);
+            const input = document.getElementById(`qty-${p.id}`);
+            if(input) {
+                const qty = input.value;
+                currentTotal += (qty * p.price);
+            }
         });
         document.getElementById('floating-total').innerText = "TOTAL PEDIDO: $" + currentTotal.toLocaleString();
     }
@@ -245,6 +270,8 @@
         if(data.nombre && data.direccion && data.telefono) {
             localStorage.setItem('adidas_client', JSON.stringify(data));
             showClientInfo(data);
+        } else {
+            alert("Por favor, completa todos los datos de envío.");
         }
     }
 
@@ -262,6 +289,8 @@
 
     function sendWhatsApp() {
         const client = JSON.parse(localStorage.getItem('adidas_client'));
+        if(!client) return alert("Por favor, ingresa tus datos primero.");
+
         let nroPedido = localStorage.getItem('consecutivo_pedido').padStart(3, '0');
         let orderText = `*ORDEN DE PEDIDO N° ${nroPedido}*%0A*VENDEDOR: HAROLD A. MARÍN*%0A------------------------------%0A*CLIENTE:* ${client.nombre}%0A*DIRECCIÓN:* ${client.direccion}%0A*CELULAR:* ${client.telefono}%0A------------------------------%0A*PRODUCTOS:*%0A`;
 
@@ -269,12 +298,15 @@
         let hasItems = false;
 
         products.forEach(p => {
-            const qty = document.getElementById(`qty-${p.id}`).value;
-            if (qty > 0) {
-                const subtotal = qty * p.price;
-                orderText += `• ${qty}x ${p.name}%0A  (P. Unit: $${p.price.toLocaleString()} | Sub: $${subtotal.toLocaleString()})%0A`;
-                total += subtotal;
-                hasItems = true;
+            const input = document.getElementById(`qty-${p.id}`);
+            if(input) {
+                const qty = input.value;
+                if (qty > 0) {
+                    const subtotal = qty * p.price;
+                    orderText += `• ${qty}x ${p.name}%0A  (P. Unit: $${p.price.toLocaleString()} | Sub: $${subtotal.toLocaleString()})%0A`;
+                    total += subtotal;
+                    hasItems = true;
+                }
             }
         });
 

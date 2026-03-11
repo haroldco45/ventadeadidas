@@ -102,11 +102,6 @@
             object-fit: cover;
         }
 
-        /* MAGIA: Recorte de la imagen 'varias.JPG' para mostrar cada tenis individualmente */
-        .crop-barreda img { object-position: 0% center; width: 300%; object-fit: cover; }
-        .crop-taekwondo img { object-position: 50% center; width: 300%; object-fit: cover; }
-        .crop-streettalk img { object-position: 100% center; width: 300%; object-fit: cover; }
-
         .product-info { flex-grow: 1; }
         .product-info strong { display: block; font-size: 13px; text-transform: uppercase; }
         
@@ -148,17 +143,35 @@
             letter-spacing: 1px;
         }
 
+        /* MODAL PARA AMPLIAR FOTO */
         #imageModal {
             display: none;
             position: fixed;
             z-index: 2000;
-            left: 0; top: 0; width: 100%; height: 100%;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0,0,0,0.9);
-            justify-content: center; align-items: center;
+            justify-content: center;
+            align-items: center;
         }
 
-        #modalImg { max-width: 90%; max-height: 80%; border: 3px solid white; }
-        .close-modal { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
+        #modalImg {
+            max-width: 90%;
+            max-height: 80%;
+            border: 3px solid white;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -194,35 +207,77 @@
         <h3 style="text-transform: uppercase; letter-spacing: 2px;">CATÁLOGO DE VENTAS</h3>
 
         <div class="product-card">
-            <div class="product-img crop-barreda" onclick="openModal(this)"><img src="varias.JPG"></div>
-            <div class="product-info"><strong>TENIS BARREDA LO</strong><span>$251,965</span></div>
-            <input type="number" class="qty-input" id="qty-13" value="0" min="0" onchange="calculateTotal()">
-        </div>
-
-        <div class="product-card">
-            <div class="product-img crop-taekwondo" onclick="openModal(this)"><img src="varias.JPG"></div>
-            <div class="product-info"><strong>TENIS TAEKWONDO LACE</strong><span>$259,967</span></div>
-            <input type="number" class="qty-input" id="qty-14" value="0" min="0" onchange="calculateTotal()">
-        </div>
-
-        <div class="product-card">
-            <div class="product-img crop-streettalk" onclick="openModal(this)"><img src="varias.JPG"></div>
-            <div class="product-info"><strong>TENIS STREETTALK</strong><span>$194,967</span></div>
-            <input type="number" class="qty-input" id="qty-15" value="0" min="0" onchange="calculateTotal()">
-        </div>
-
-        <div class="product-card">
-            <div class="product-img" onclick="openModal(this)"><img src="guayosincordones.JPG"></div>
-            <div class="product-info"><strong>GUAYOS F50 LEAGUE</strong><span>$349,965</span></div>
+            <div class="product-img" onclick="openModal(this)"><img src="guayosincordones.JPG" alt="Guayos F50"></div>
+            <div class="product-info"><strong>GUAYOS F50 LEAGUE (SIN CORDONES)</strong><span>$349,965</span></div>
             <input type="number" class="qty-input" id="qty-12" value="0" min="0" onchange="calculateTotal()">
         </div>
 
         <div class="product-card">
-            <div class="product-img" onclick="openModal(this)"><img src="tenissambaltmujer.JPG"></div>
-            <div class="product-info"><strong>SAMBA LT (VERDE)</strong><span>$389,967</span></div>
+            <div class="product-img" onclick="openModal(this)"><img src="tenissambaltmujer.JPG" alt="Samba LT"></div>
+            <div class="product-info"><strong>ADIDAS SAMBA LT (VERDE)</strong><span>$389,967</span></div>
             <input type="number" class="qty-input" id="qty-7" value="0" min="0" onchange="calculateTotal()">
         </div>
-        
+
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="adizerobostonmujer.JPG" alt="Adizero Boston"></div>
+            <div class="product-info"><strong>ADIZERO BOSTON 12 (AMARILLO)</strong><span>$559,965</span></div>
+            <input type="number" class="qty-input" id="qty-8" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="tenissambaogmujer.JPG" alt="Samba OG"></div>
+            <div class="product-info"><strong>SAMBA OG (ANIMAL PRINT)</strong><span>$479,960</span></div>
+            <input type="number" class="qty-input" id="qty-11" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="zapatillasastrastarmujer.JPG" alt="Astrastar"></div>
+            <div class="product-info"><strong>ZAPATILLAS ASTRASTAR (PINK)</strong><span>$230,965</span></div>
+            <input type="number" class="qty-input" id="qty-9" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="tenisresponse.JPG" alt="Response"></div>
+            <div class="product-info"><strong>ADIDAS RESPONSE (BLACK)</strong><span>$214,467</span></div>
+            <input type="number" class="qty-input" id="qty-10" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="deforozamercedes.JPG" alt="Mercedes-AMG"></div>
+            <div class="product-info"><strong>ADIDAS MERCEDES-AMG</strong><span>$389,970</span></div>
+            <input type="number" class="qty-input" id="qty-5" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="tenisSL72OG.JPG" alt="SL 72 OG"></div>
+            <div class="product-info"><strong>ADIDAS SL 72 OG (VERDE)</strong><span>$329,970</span></div>
+            <input type="number" class="qty-input" id="qty-6" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="chaquetadelargo.JPG" alt="Chaqueta"></div>
+            <div class="product-info"><strong>CHAQUETA CORTA ADIDAS</strong><span>$279,960</span></div>
+            <input type="number" class="qty-input" id="qty-4" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="tenis-adistar-control5.JPG" alt="Adistar 5"></div>
+            <div class="product-info"><strong>ADISTAR CONTROL 5</strong><span>$599,950</span></div>
+            <input type="number" class="qty-input" id="qty-1" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="tenis-adistar-control3.JPG" alt="Adistar 3"></div>
+            <div class="product-info"><strong>ADISTAR CONTROL 3</strong><span>$449,950</span></div>
+            <input type="number" class="qty-input" id="qty-2" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="SL-72-RS.JPG" alt="SL-72 RS"></div>
+            <div class="product-info"><strong>ADIDAS SL-72 RS</strong><span>$549,950</span></div>
+            <input type="number" class="qty-input" id="qty-3" value="0" min="0" onchange="calculateTotal()">
+        </div>
+
         <button class="btn-adidas" style="margin-top: 30px;" onclick="sendWhatsApp()">ENVIAR PEDIDO POR WHATSAPP</button>
     </div>
 
@@ -248,21 +303,24 @@
         { id: 9, name: "ZAPATILLAS ASTRASTAR (PINK)", price: 230965 },
         { id: 10, name: "ADIDAS RESPONSE (BLACK)", price: 214467 },
         { id: 11, name: "SAMBA OG (ANIMAL PRINT)", price: 479960 },
-        { id: 12, name: "GUAYOS F50 LEAGUE", price: 349965 },
-        { id: 13, name: "TENIS BARREDA LO", price: 251965 },
-        { id: 14, name: "TENIS TAEKWONDO LACE", price: 259967 },
-        { id: 15, name: "TENIS STREETTALK", price: 194967 }
+        { id: 12, name: "GUAYOS F50 LEAGUE (SIN CORDONES)", price: 349965 }
     ];
 
     function openModal(element) {
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
-        const img = element.getElementsByTagName("img")[0];
+        const imgSrc = element.getElementsByTagName("img")[0].src;
         modal.style.display = "flex";
-        modalImg.src = img.src;
-        // Si es una imagen recortada, ajustamos el modal para que se vea toda la tira
-        modalImg.style.objectFit = "contain"; 
+        modalImg.src = imgSrc;
     }
+
+    window.onload = function() {
+        if (!localStorage.getItem('consecutivo_pedido')) localStorage.setItem('consecutivo_pedido', '1');
+        const savedData = localStorage.getItem('adidas_client');
+        if (savedData) showClientInfo(JSON.parse(savedData));
+        else document.getElementById('client-form').classList.remove('hidden');
+        calculateTotal();
+    };
 
     function calculateTotal() {
         let currentTotal = 0;
@@ -300,31 +358,28 @@
     function sendWhatsApp() {
         const client = JSON.parse(localStorage.getItem('adidas_client'));
         if(!client) return alert("Ingresa tus datos.");
+
         let nroPedido = localStorage.getItem('consecutivo_pedido').padStart(3, '0');
-        let orderText = `*ORDEN DE PEDIDO N° ${nroPedido}*%0A*VENDEDOR: HAROLD*%0A------------------------------%0A*CLIENTE:* ${client.nombre}%0A------------------------------%0A*PRODUCTOS:*%0A`;
+        let orderText = `*ORDEN DE PEDIDO N° ${nroPedido}*%0A*VENDEDOR: HAROLD A. MARÍN*%0A------------------------------%0A*CLIENTE:* ${client.nombre}%0A*DIRECCIÓN:* ${client.direccion}%0A*CELULAR:* ${client.telefono}%0A------------------------------%0A*PRODUCTOS:*%0A`;
+
         let total = 0;
         let hasItems = false;
+
         products.forEach(p => {
             const qty = document.getElementById(`qty-${p.id}`).value;
             if (qty > 0) {
-                orderText += `• ${qty}x ${p.name} ($${(qty*p.price).toLocaleString()})%0A`;
-                total += (qty*p.price);
+                const sub = qty * p.price;
+                orderText += `• ${qty}x ${p.name}%0A  (Sub: $${sub.toLocaleString()})%0A`;
+                total += sub;
                 hasItems = true;
             }
         });
+
         if(!hasItems) return alert("Selecciona productos.");
-        orderText += `------------------------------%0A*TOTAL: $${total.toLocaleString()}*`;
+        orderText += `------------------------------%0A*TOTAL: $${total.toLocaleString()}*%0A%0A*Vibras Positivas*`;
         localStorage.setItem('consecutivo_pedido', (parseInt(nroPedido) + 1).toString());
         window.open(`https://wa.me/573117700431?text=${orderText}`, '_blank');
     }
-
-    window.onload = function() {
-        if (!localStorage.getItem('consecutivo_pedido')) localStorage.setItem('consecutivo_pedido', '1');
-        const savedData = localStorage.getItem('adidas_client');
-        if (savedData) showClientInfo(JSON.parse(savedData));
-        else document.getElementById('client-form').classList.remove('hidden');
-        calculateTotal();
-    };
 </script>
 </body>
 </html>

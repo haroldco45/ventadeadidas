@@ -16,7 +16,7 @@
             margin: 0;
             background-color: var(--adidas-white);
             color: var(--adidas-black);
-            padding-bottom: 100px;
+            padding-bottom: 120px;
         }
 
         header {
@@ -26,165 +26,61 @@
             text-align: center;
         }
 
-        .logo-container img {
-            width: 180px;
-            height: auto;
-            margin-bottom: 15px;
-        }
+        .logo-container img { width: 180px; height: auto; margin-bottom: 15px; }
+        .brand-name { display: block; text-transform: uppercase; letter-spacing: 4px; font-weight: 900; font-size: 1.4em; }
 
-        .brand-name {
-            display: block;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            font-weight: 900;
-            font-size: 1.4em;
-        }
-
-        .container {
-            padding: 20px;
-            max-width: 500px;
-            margin: auto;
-        }
+        .container { padding: 20px; max-width: 500px; margin: auto; }
 
         #client-info-display {
             background: var(--adidas-grey);
             padding: 20px;
             border-left: 6px solid var(--adidas-black);
+            margin-bottom: 20px;
+        }
+
+        /* CAJÓN DE HISTORIAL SOLICITADO */
+        #purchase-history {
+            background: #f0fff0;
+            padding: 15px;
+            border: 2px dashed #28a745;
             margin-bottom: 30px;
+            text-align: center;
         }
 
         .hidden { display: none; }
+        input { width: 100%; padding: 15px; margin: 5px 0 15px 0; border: 2px solid #000; box-sizing: border-box; font-size: 16px; }
+        .btn-adidas { background: var(--adidas-black); color: white; padding: 20px; width: 100%; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
 
-        input {
-            width: 100%;
-            padding: 15px;
-            margin: 5px 0 15px 0;
-            border: 2px solid #000;
-            box-sizing: border-box;
-            font-size: 16px;
-        }
+        .product-card { border-bottom: 1px solid #eee; padding: 20px 0; display: flex; align-items: center; }
+        .product-img { width: 90px; height: 90px; background: #f4f4f4; margin-right: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #ddd; cursor: zoom-in; }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        .btn-adidas {
-            background: var(--adidas-black);
-            color: white;
-            padding: 20px;
-            width: 100%;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .product-card {
-            border-bottom: 1px solid #eee;
-            padding: 20px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .product-img {
-            width: 90px;
-            height: 90px;
-            background: #f4f4f4;
-            margin-right: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 1px solid #ddd;
-            cursor: zoom-in;
-        }
-
-        /* MAGIA DE RECORTE PARA IMAGEN COMPARTIDA */
-        .product-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Ajustes de posición para cada tenis en la foto 'varias.JPG' */
-        .crop-barreda img { 
-            width: 300% !important; 
-            max-width: none !important;
-            object-position: 0% center !important; 
-        }
-        .crop-taekwondo img { 
-            width: 300% !important; 
-            max-width: none !important;
-            object-position: 50% center !important; 
-        }
-        .crop-streettalk img { 
-            width: 300% !important; 
-            max-width: none !important;
-            object-position: 100% center !important; 
-        }
+        /* MAGIA DE RECORTE PARA 'varias.JPG' */
+        .crop-barreda img { width: 300% !important; max-width: none !important; object-position: 0% center !important; }
+        .crop-taekwondo img { width: 300% !important; max-width: none !important; object-position: 50% center !important; }
+        .crop-streettalk img { width: 300% !important; max-width: none !important; object-position: 100% center !important; }
 
         .product-info { flex-grow: 1; }
         .product-info strong { display: block; font-size: 13px; text-transform: uppercase; }
-        
-        .qty-input {
-            width: 65px !important;
-            margin: 0 !important;
-            text-align: center;
-            font-weight: bold;
-        }
+        .qty-input { width: 65px !important; margin: 0 !important; text-align: center; font-weight: bold; }
 
-        .total-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: var(--adidas-black);
-            color: white;
-            padding: 15px;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            z-index: 1000;
-        }
+        .total-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: var(--adidas-black); color: white; padding: 15px; text-align: center; font-size: 18px; font-weight: bold; z-index: 1000; }
 
-        footer {
-            margin-top: 20px;
-            font-size: 11px;
-            text-align: center;
-            color: #444;
-            padding: 20px;
-            line-height: 1.6;
-        }
+        footer { margin-top: 20px; font-size: 11px; text-align: center; color: #444; padding: 20px; line-height: 1.6; }
+        .copyright { margin-top: 10px; font-weight: bold; color: #000; text-transform: uppercase; letter-spacing: 1px; }
 
-        .copyright {
-            margin-top: 10px;
-            font-weight: bold;
-            color: #000;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        #imageModal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            justify-content: center; align-items: center;
-        }
-
+        #imageModal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; }
         #modalImg { max-width: 95%; max-height: 80%; border: 2px solid white; }
-        .close-modal { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; cursor: pointer; }
     </style>
 </head>
 <body>
 
 <div id="imageModal" onclick="this.style.display='none'">
-    <span class="close-modal">&times;</span>
     <img id="modalImg">
 </div>
 
 <header>
-    <div class="logo-container">
-        <img src="hm-adidas.png" alt="Harold & Marleny Logo">
-    </div>
+    <div class="logo-container"><img src="hm-adidas.png" alt="Logo"></div>
     <span class="brand-name">VIBRAS POSITIVAS</span>
 </header>
 
@@ -203,6 +99,12 @@
         <button style="margin-top:10px; cursor:pointer;" onclick="editClientData()">✎ Editar Datos</button>
     </div>
 
+    <div id="purchase-history" class="hidden">
+        <strong>💰 HISTORIAL DE COMPRAS:</strong>
+        <div id="accumulated-total" style="font-size: 20px; color: #28a745; font-weight: 900;">$0</div>
+        <small>Total acumulado en tus pedidos</small>
+    </div>
+
     <div id="catalog">
         <h3 style="text-transform: uppercase; letter-spacing: 2px;">CATÁLOGO DE VENTAS</h3>
 
@@ -211,13 +113,11 @@
             <div class="product-info"><strong>TENIS BARREDA LO</strong><span>$251,965</span></div>
             <input type="number" class="qty-input" id="qty-13" value="0" min="0" onchange="calculateTotal()">
         </div>
-
         <div class="product-card">
             <div class="product-img crop-taekwondo" onclick="openModal(this)"><img src="varias.JPG"></div>
             <div class="product-info"><strong>TENIS TAEKWONDO LACE</strong><span>$259,967</span></div>
             <input type="number" class="qty-input" id="qty-14" value="0" min="0" onchange="calculateTotal()">
         </div>
-
         <div class="product-card">
             <div class="product-img crop-streettalk" onclick="openModal(this)"><img src="varias.JPG"></div>
             <div class="product-info"><strong>TENIS STREETTALK</strong><span>$194,967</span></div>
@@ -229,17 +129,60 @@
             <div class="product-info"><strong>GUAYOS F50 LEAGUE</strong><span>$349,965</span></div>
             <input type="number" class="qty-input" id="qty-12" value="0" min="0" onchange="calculateTotal()">
         </div>
-
         <div class="product-card">
             <div class="product-img" onclick="openModal(this)"><img src="tenissambaltmujer.JPG"></div>
-            <div class="product-info"><strong>SAMBA LT (VERDE)</strong><span>$389,967</span></div>
+            <div class="product-info"><strong>ADIDAS SAMBA LT</strong><span>$389,967</span></div>
             <input type="number" class="qty-input" id="qty-7" value="0" min="0" onchange="calculateTotal()">
         </div>
-
         <div class="product-card">
             <div class="product-img" onclick="openModal(this)"><img src="adizerobostonmujer.JPG"></div>
             <div class="product-info"><strong>ADIZERO BOSTON 12</strong><span>$559,965</span></div>
             <input type="number" class="qty-input" id="qty-8" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="tenissambaogmujer.JPG"></div>
+            <div class="product-info"><strong>SAMBA OG ANIMAL</strong><span>$479,960</span></div>
+            <input type="number" class="qty-input" id="qty-11" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="zapatillasastrastarmujer.JPG"></div>
+            <div class="product-info"><strong>ADIDAS ASTRASTAR</strong><span>$230,965</span></div>
+            <input type="number" class="qty-input" id="qty-9" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="tenisresponse.JPG"></div>
+            <div class="product-info"><strong>ADIDAS RESPONSE</strong><span>$214,467</span></div>
+            <input type="number" class="qty-input" id="qty-10" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="deforozamercedes.JPG"></div>
+            <div class="product-info"><strong>MERCEDES-AMG</strong><span>$389,970</span></div>
+            <input type="number" class="qty-input" id="qty-5" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="tenisSL72OG.JPG"></div>
+            <div class="product-info"><strong>SL 72 OG VERDE</strong><span>$329,970</span></div>
+            <input type="number" class="qty-input" id="qty-6" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="chaquetadelargo.JPG"></div>
+            <div class="product-info"><strong>CHAQUETA ADIDAS</strong><span>$279,960</span></div>
+            <input type="number" class="qty-input" id="qty-4" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="tenis-adistar-control5.JPG"></div>
+            <div class="product-info"><strong>ADISTAR CONTROL 5</strong><span>$599,950</span></div>
+            <input type="number" class="qty-input" id="qty-1" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="tenis-adistar-control3.JPG"></div>
+            <div class="product-info"><strong>ADISTAR CONTROL 3</strong><span>$449,950</span></div>
+            <input type="number" class="qty-input" id="qty-2" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img" onclick="openModal(this)"><img src="SL-72-RS.JPG"></div>
+            <div class="product-info"><strong>SL-72 RS</strong><span>$549,950</span></div>
+            <input type="number" class="qty-input" id="qty-3" value="0" min="0" onchange="calculateTotal()">
         </div>
 
         <button class="btn-adidas" style="margin-top: 30px;" onclick="sendWhatsApp()">ENVIAR PEDIDO POR WHATSAPP</button>
@@ -256,21 +199,28 @@
 
 <script>
     const products = [
-        { id: 7, name: "ADIDAS SAMBA LT (VERDE)", price: 389967 },
+        { id: 1, name: "ADISTAR CONTROL 5", price: 599950 },
+        { id: 2, name: "ADISTAR CONTROL 3", price: 449950 },
+        { id: 3, name: "SL-72 RS", price: 549950 },
+        { id: 4, name: "CHAQUETA ADIDAS", price: 279960 },
+        { id: 5, name: "MERCEDES-AMG", price: 389970 },
+        { id: 6, name: "SL 72 OG VERDE", price: 329970 },
+        { id: 7, name: "ADIDAS SAMBA LT", price: 389967 },
         { id: 8, name: "ADIZERO BOSTON 12", price: 559965 },
+        { id: 9, name: "ADIDAS ASTRASTAR", price: 230965 },
+        { id: 10, name: "ADIDAS RESPONSE", price: 214467 },
+        { id: 11, name: "SAMBA OG ANIMAL", price: 479960 },
         { id: 12, name: "GUAYOS F50 LEAGUE", price: 349965 },
         { id: 13, name: "TENIS BARREDA LO", price: 251965 },
         { id: 14, name: "TENIS TAEKWONDO LACE", price: 259967 },
         { id: 15, name: "TENIS STREETTALK", price: 194967 }
-        // Asegúrate de tener todos los IDs aquí para que sumen al total
     ];
 
     function openModal(element) {
         const modal = document.getElementById("imageModal");
         const modalImg = document.getElementById("modalImg");
-        const img = element.getElementsByTagName("img")[0];
         modal.style.display = "flex";
-        modalImg.src = img.src;
+        modalImg.src = element.getElementsByTagName("img")[0].src;
     }
 
     function calculateTotal() {
@@ -282,6 +232,13 @@
         document.getElementById('floating-total').innerText = "TOTAL PEDIDO: $" + currentTotal.toLocaleString();
     }
 
+    function updateAccumulatedTotal(newAmount) {
+        let currentAccumulated = parseInt(localStorage.getItem('total_acumulado') || 0);
+        currentAccumulated += newAmount;
+        localStorage.setItem('total_acumulado', currentAccumulated);
+        document.getElementById('accumulated-total').innerText = "$" + currentAccumulated.toLocaleString();
+    }
+
     function saveClientData() {
         const data = {
             nombre: document.getElementById('nombre').value.toUpperCase(),
@@ -291,14 +248,18 @@
         if(data.nombre && data.direccion && data.telefono) {
             localStorage.setItem('adidas_client', JSON.stringify(data));
             showClientInfo(data);
-        } else alert("Por favor, completa todos los datos.");
+        }
     }
 
     function showClientInfo(data) {
         document.getElementById('client-form').classList.add('hidden');
         document.getElementById('client-info-display').classList.remove('hidden');
+        document.getElementById('purchase-history').classList.remove('hidden');
         document.getElementById('display-name').innerText = data.nombre;
         document.getElementById('display-dir').innerText = data.direccion + " | TEL: " + data.telefono;
+        
+        let total = parseInt(localStorage.getItem('total_acumulado') || 0);
+        document.getElementById('accumulated-total').innerText = "$" + total.toLocaleString();
     }
 
     function editClientData() {
@@ -310,20 +271,24 @@
         const client = JSON.parse(localStorage.getItem('adidas_client'));
         if(!client) return alert("Ingresa tus datos.");
         let nroPedido = localStorage.getItem('consecutivo_pedido').padStart(3, '0');
-        let orderText = `*ORDEN DE PEDIDO N° ${nroPedido}*%0A*VENDEDOR: HAROLD*%0A------------------------------%0A*CLIENTE:* ${client.nombre}%0A------------------------------%0A*PRODUCTOS:*%0A`;
-        let total = 0;
+        let orderText = `*ORDEN DE PEDIDO N° ${nroPedido}*%0A*VENDEDOR: HAROLD A. MARÍN*%0A------------------------------%0A*CLIENTE:* ${client.nombre}%0A------------------------------%0A*PRODUCTOS:*%0A`;
+        let totalPedido = 0;
         let hasItems = false;
+
         products.forEach(p => {
-            const input = document.getElementById(`qty-${p.id}`);
-            if (input && input.value > 0) {
-                const sub = input.value * p.price;
-                orderText += `• ${input.value}x ${p.name} ($${sub.toLocaleString()})%0A`;
-                total += sub;
+            const qty = document.getElementById(`qty-${p.id}`).value;
+            if (qty > 0) {
+                const sub = qty * p.price;
+                orderText += `• ${qty}x ${p.name} ($${sub.toLocaleString()})%0A`;
+                totalPedido += sub;
                 hasItems = true;
             }
         });
+
         if(!hasItems) return alert("Selecciona productos.");
-        orderText += `------------------------------%0A*TOTAL: $${total.toLocaleString()}*`;
+        
+        updateAccumulatedTotal(totalPedido); // Guardamos la compra en el historial
+        orderText += `------------------------------%0A*TOTAL: $${totalPedido.toLocaleString()}*`;
         localStorage.setItem('consecutivo_pedido', (parseInt(nroPedido) + 1).toString());
         window.open(`https://wa.me/573117700431?text=${orderText}`, '_blank');
     }

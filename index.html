@@ -38,7 +38,7 @@
             margin-bottom: 20px;
         }
 
-        /* CAJÓN DE HISTORIAL SOLICITADO */
+        /* CAJÓN DE VALOR TOTAL ACUMULADO */
         #purchase-history {
             background: #f0fff0;
             padding: 15px;
@@ -52,13 +52,44 @@
         .btn-adidas { background: var(--adidas-black); color: white; padding: 20px; width: 100%; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
 
         .product-card { border-bottom: 1px solid #eee; padding: 20px 0; display: flex; align-items: center; }
-        .product-img { width: 90px; height: 90px; background: #f4f4f4; margin-right: 20px; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid #ddd; cursor: zoom-in; }
-        .product-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .product-img { 
+            width: 90px; 
+            height: 90px; 
+            background: #f4f4f4; 
+            margin-right: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+            border: 1px solid #ddd; 
+            cursor: zoom-in; 
+            position: relative;
+        }
 
-        /* MAGIA DE RECORTE PARA 'varias.JPG' */
-        .crop-barreda img { width: 300% !important; max-width: none !important; object-position: 0% center !important; }
-        .crop-taekwondo img { width: 300% !important; max-width: none !important; object-position: 50% center !important; }
-        .crop-streettalk img { width: 300% !important; max-width: none !important; object-position: 100% center !important; }
+        /* CORRECCIÓN DEFINITIVA DEL RECORTE */
+        .product-img img {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+        }
+
+        /* Si la imagen es la de 'varias.JPG', aplicamos el desplazamiento */
+        .crop-barreda img {
+            width: 300% !important;
+            max-width: none !important;
+            object-position: 0% center !important;
+        }
+        .crop-taekwondo img {
+            width: 300% !important;
+            max-width: none !important;
+            object-position: 50% center !important;
+        }
+        .crop-streettalk img {
+            width: 300% !important;
+            max-width: none !important;
+            object-position: 100% center !important;
+        }
 
         .product-info { flex-grow: 1; }
         .product-info strong { display: block; font-size: 13px; text-transform: uppercase; }
@@ -100,9 +131,9 @@
     </div>
 
     <div id="purchase-history" class="hidden">
-        <strong>💰 HISTORIAL DE COMPRAS:</strong>
-        <div id="accumulated-total" style="font-size: 20px; color: #28a745; font-weight: 900;">$0</div>
-        <small>Total acumulado en tus pedidos</small>
+        <strong>💰 VALOR TOTAL PEDIDO:</strong>
+        <div id="accumulated-total" style="font-size: 22px; color: #28a745; font-weight: 900;">$0</div>
+        <small>Acumulado histórico de tus compras</small>
     </div>
 
     <div id="catalog">
@@ -276,10 +307,10 @@
         let hasItems = false;
 
         products.forEach(p => {
-            const qty = document.getElementById(`qty-${p.id}`).value;
-            if (qty > 0) {
-                const sub = qty * p.price;
-                orderText += `• ${qty}x ${p.name} ($${sub.toLocaleString()})%0A`;
+            const input = document.getElementById(`qty-${p.id}`);
+            if (input && input.value > 0) {
+                const sub = input.value * p.price;
+                orderText += `• ${input.value}x ${p.name} ($${sub.toLocaleString()})%0A`;
                 totalPedido += sub;
                 hasItems = true;
             }
@@ -287,7 +318,7 @@
 
         if(!hasItems) return alert("Selecciona productos.");
         
-        updateAccumulatedTotal(totalPedido); // Guardamos la compra en el historial
+        updateAccumulatedTotal(totalPedido); 
         orderText += `------------------------------%0A*TOTAL: $${totalPedido.toLocaleString()}*`;
         localStorage.setItem('consecutivo_pedido', (parseInt(nroPedido) + 1).toString());
         window.open(`https://wa.me/573117700431?text=${orderText}`, '_blank');

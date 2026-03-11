@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibras Positivas - Adidas Originales</title>
+    <title>Vibras Positivas - Catálogo</title>
     <style>
         :root {
             --adidas-black: #000000;
@@ -38,15 +38,6 @@
             margin-bottom: 20px;
         }
 
-        /* CAJÓN DE VALOR TOTAL ACUMULADO */
-        #purchase-history {
-            background: #f0fff0;
-            padding: 15px;
-            border: 2px dashed #28a745;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
         .hidden { display: none; }
         input { width: 100%; padding: 15px; margin: 5px 0 15px 0; border: 2px solid #000; box-sizing: border-box; font-size: 16px; }
         .btn-adidas { background: var(--adidas-black); color: white; padding: 20px; width: 100%; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; letter-spacing: 2px; }
@@ -63,33 +54,27 @@
             justify-content: center; 
             overflow: hidden; 
             border: 1px solid #ddd; 
-            cursor: zoom-in; 
+            cursor: zoom-in;
             position: relative;
         }
 
-        /* CORRECCIÓN DEFINITIVA DEL RECORTE */
+        /* RECORTE PRO PARA IMÁGENES MÚLTIPLES */
         .product-img img {
             height: 100%;
             width: auto;
             object-fit: cover;
         }
 
-        /* Si la imagen es la de 'varias.JPG', aplicamos el desplazamiento */
-        .crop-barreda img {
-            width: 300% !important;
-            max-width: none !important;
-            object-position: 0% center !important;
-        }
-        .crop-taekwondo img {
-            width: 300% !important;
-            max-width: none !important;
-            object-position: 50% center !important;
-        }
-        .crop-streettalk img {
-            width: 300% !important;
-            max-width: none !important;
-            object-position: 100% center !important;
-        }
+        /* Recortes para varias.JPG (3 productos) */
+        .crop-barreda img { width: 300% !important; max-width: none !important; object-position: 0% center !important; }
+        .crop-taekwondo img { width: 300% !important; max-width: none !important; object-position: 50% center !important; }
+        .crop-streettalk img { width: 300% !important; max-width: none !important; object-position: 100% center !important; }
+
+        /* Recortes para varias1.JPG (4 productos) */
+        .crop-grandcourt img { width: 400% !important; max-width: none !important; object-position: 0% center !important; }
+        .crop-tokyocafe img { width: 400% !important; max-width: none !important; object-position: 33.3% center !important; }
+        .crop-vlbold img { width: 400% !important; max-width: none !important; object-position: 66.6% center !important; }
+        .crop-tokyorojo img { width: 400% !important; max-width: none !important; object-position: 100% center !important; }
 
         .product-info { flex-grow: 1; }
         .product-info strong { display: block; font-size: 13px; text-transform: uppercase; }
@@ -130,14 +115,29 @@
         <button style="margin-top:10px; cursor:pointer;" onclick="editClientData()">✎ Editar Datos</button>
     </div>
 
-    <div id="purchase-history" class="hidden">
-        <strong>💰 VALOR TOTAL PEDIDO:</strong>
-        <div id="accumulated-total" style="font-size: 22px; color: #28a745; font-weight: 900;">$0</div>
-        <small>Acumulado histórico de tus compras</small>
-    </div>
-
     <div id="catalog">
         <h3 style="text-transform: uppercase; letter-spacing: 2px;">CATÁLOGO DE VENTAS</h3>
+
+        <div class="product-card">
+            <div class="product-img crop-grandcourt" onclick="openModal(this)"><img src="varias1.JPG"></div>
+            <div class="product-info"><strong>GRAND COURT LO (PLATA)</strong><span>$220,967</span></div>
+            <input type="number" class="qty-input" id="qty-16" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img crop-tokyocafe" onclick="openModal(this)"><img src="varias1.JPG"></div>
+            <div class="product-info"><strong>ADIDAS TOKYO (CAFE)</strong><span>$292,467</span></div>
+            <input type="number" class="qty-input" id="qty-17" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img crop-vlbold" onclick="openModal(this)"><img src="varias1.JPG"></div>
+            <div class="product-info"><strong>VL COURT BOLD</strong><span>$279,965</span></div>
+            <input type="number" class="qty-input" id="qty-18" value="0" min="0" onchange="calculateTotal()">
+        </div>
+        <div class="product-card">
+            <div class="product-img crop-tokyorojo" onclick="openModal(this)"><img src="varias1.JPG"></div>
+            <div class="product-info"><strong>ADIDAS TOKYO (ROJO)</strong><span>$292,467</span></div>
+            <input type="number" class="qty-input" id="qty-19" value="0" min="0" onchange="calculateTotal()">
+        </div>
 
         <div class="product-card">
             <div class="product-img crop-barreda" onclick="openModal(this)"><img src="varias.JPG"></div>
@@ -244,7 +244,11 @@
         { id: 12, name: "GUAYOS F50 LEAGUE", price: 349965 },
         { id: 13, name: "TENIS BARREDA LO", price: 251965 },
         { id: 14, name: "TENIS TAEKWONDO LACE", price: 259967 },
-        { id: 15, name: "TENIS STREETTALK", price: 194967 }
+        { id: 15, name: "TENIS STREETTALK", price: 194967 },
+        { id: 16, name: "GRAND COURT LO", price: 220967 },
+        { id: 17, name: "ADIDAS TOKYO CAFE", price: 292467 },
+        { id: 18, name: "VL COURT BOLD", price: 279965 },
+        { id: 19, name: "ADIDAS TOKYO ROJO", price: 292467 }
     ];
 
     function openModal(element) {
@@ -263,13 +267,6 @@
         document.getElementById('floating-total').innerText = "TOTAL PEDIDO: $" + currentTotal.toLocaleString();
     }
 
-    function updateAccumulatedTotal(newAmount) {
-        let currentAccumulated = parseInt(localStorage.getItem('total_acumulado') || 0);
-        currentAccumulated += newAmount;
-        localStorage.setItem('total_acumulado', currentAccumulated);
-        document.getElementById('accumulated-total').innerText = "$" + currentAccumulated.toLocaleString();
-    }
-
     function saveClientData() {
         const data = {
             nombre: document.getElementById('nombre').value.toUpperCase(),
@@ -285,12 +282,8 @@
     function showClientInfo(data) {
         document.getElementById('client-form').classList.add('hidden');
         document.getElementById('client-info-display').classList.remove('hidden');
-        document.getElementById('purchase-history').classList.remove('hidden');
         document.getElementById('display-name').innerText = data.nombre;
         document.getElementById('display-dir').innerText = data.direccion + " | TEL: " + data.telefono;
-        
-        let total = parseInt(localStorage.getItem('total_acumulado') || 0);
-        document.getElementById('accumulated-total').innerText = "$" + total.toLocaleString();
     }
 
     function editClientData() {
@@ -318,7 +311,6 @@
 
         if(!hasItems) return alert("Selecciona productos.");
         
-        updateAccumulatedTotal(totalPedido); 
         orderText += `------------------------------%0A*TOTAL: $${totalPedido.toLocaleString()}*`;
         localStorage.setItem('consecutivo_pedido', (parseInt(nroPedido) + 1).toString());
         window.open(`https://wa.me/573117700431?text=${orderText}`, '_blank');
